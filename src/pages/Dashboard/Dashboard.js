@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../../components/header";
 import { apiGet } from "../../utils";
+import "./dashboard.css"
 
 const Dashboard = () => {
     const [userName, setUserName] = useState('')
@@ -36,6 +38,7 @@ const Dashboard = () => {
 
     return (
         <div>
+            <Header />
             <p>{ userName }</p>
         </div>
     )
