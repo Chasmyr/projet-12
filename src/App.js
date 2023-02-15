@@ -1,13 +1,13 @@
-
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import Dashboard from "./pages/Dashboard/Dashboard";
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/utilisateur/:id" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
