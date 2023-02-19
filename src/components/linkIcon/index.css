@@ -1,0 +1,15 @@
+.link-icon-container {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.link-icon-el {
+    height: 35px;
+    cursor: pointer;
+}

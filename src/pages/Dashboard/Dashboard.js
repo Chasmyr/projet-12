@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import ActivityChart from "../../components/activityChart";
 import Header from "../../components/header";
+import SideNav from "../../components/sideNav";
 import { apiGet } from "../../utils";
 import "./dashboard.css"
 
@@ -10,10 +12,9 @@ const Dashboard = () => {
     const [userActivity, setUserActivity] = useState(null)
     const [userPerformance, setUserPerformance] = useState(null)
     const [userSessions, setUserSessions] = useState(null)
-    console.log(actualData)
-    console.log(userActivity)
-    console.log(userPerformance)
-    console.log(userSessions)
+    // console.log(actualData)
+    // console.log(userPerformance)
+    // console.log(userSessions)
 
     // get the user id
     let userParams = useParams()
@@ -37,10 +38,31 @@ const Dashboard = () => {
     }, [userId])
 
     return (
-        <div>
+        <>
             <Header />
-            <p>{ userName }</p>
-        </div>
+            <main className="dasboard-main">
+                <SideNav />
+                <div className="content-wrapper">
+                    <div className="content-title-wrapper">
+                        <h3 className="content-title">Bonjour <span className="content-title-username">{ userName }</span></h3>
+                        <h4 className="content-title-desc">Félicitation ! Vous avez explosé vos objectifs hier 👏</h4>
+                    </div>
+                    <div className="graph-wrapper">
+                        <div className="left-col">
+                            <div className="activity-graph">
+                                <ActivityChart activity={userActivity}/>
+                            </div>
+                            <div className="small-graph">
+
+                            </div>
+                        </div>
+                        <div className="right-col">
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </>
     )
 }
 

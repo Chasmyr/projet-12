@@ -1,0 +1,30 @@
+.barchart-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barchart-title {
+    margin: 0;
+    position: absolute;
+    top: 4%;
+    left: 3%;
+    font-size: 15px;
+}
+
+.custom-barchart-tooltip {
+    background-color: #E60000;
+    text-align: center;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+}
+.recharts-tooltip-wrapper[role=dialog]{
+    outline: none;
+}
+.recharts-legend-item-text {
+    font-size: 14px;
+}
