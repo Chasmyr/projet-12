@@ -26,6 +26,9 @@ body {
 .content-wrapper {
     margin-left: 100px;
 }
+.graph-wrapper {
+    margin-top: 50px;
+}
 .activity-graph {
     width: 58vw;
     height: 320px;

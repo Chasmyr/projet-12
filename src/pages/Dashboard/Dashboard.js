@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ActivityChart from "../../components/activityChart";
 import Header from "../../components/header";
+import SessionChart from "../../components/sessionChart";
 import SideNav from "../../components/sideNav";
 import { apiGet } from "../../utils";
 import "./dashboard.css"
@@ -14,7 +15,6 @@ const Dashboard = () => {
     const [userSessions, setUserSessions] = useState(null)
     // console.log(actualData)
     // console.log(userPerformance)
-    // console.log(userSessions)
 
     // get the user id
     let userParams = useParams()
@@ -53,7 +53,7 @@ const Dashboard = () => {
                                 <ActivityChart activity={userActivity}/>
                             </div>
                             <div className="small-graph">
-
+                                <SessionChart session={userSessions} />
                             </div>
                         </div>
                         <div className="right-col">
