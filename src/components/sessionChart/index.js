@@ -13,8 +13,6 @@ const SessionChart = ({session}) => {
             return sessionCollection.push(e.sessionLength)
         })
 
-        console.log(data)
-
         // find the max value of data
         let YAxisMax = 0
         if(YAxisMax === 0) {
@@ -43,8 +41,6 @@ const SessionChart = ({session}) => {
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={data}
-                        width={300}
-                        heigt={300}
                     >   
                         <YAxis 
                             hide={true} 

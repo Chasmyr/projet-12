@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ActivityChart from "../../components/activityChart";
 import Header from "../../components/header";
+import IntensityChart from "../../components/intensityChart";
+import ScoreChart from "../../components/scoreChart";
 import SessionChart from "../../components/sessionChart";
 import SideNav from "../../components/sideNav";
 import { apiGet } from "../../utils";
@@ -14,7 +16,6 @@ const Dashboard = () => {
     const [userPerformance, setUserPerformance] = useState(null)
     const [userSessions, setUserSessions] = useState(null)
     // console.log(actualData)
-    // console.log(userPerformance)
 
     // get the user id
     let userParams = useParams()
@@ -54,6 +55,8 @@ const Dashboard = () => {
                             </div>
                             <div className="small-graph">
                                 <SessionChart session={userSessions} />
+                                <IntensityChart performance={userPerformance} />
+                                <ScoreChart userData={actualData} />
                             </div>
                         </div>
                         <div className="right-col">
