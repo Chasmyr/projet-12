@@ -5,7 +5,6 @@ const IntensityChart = ({performance}) => {
 
     if(performance !== null) {
 
-        console.log(performance.data)
         const data = performance.data.data
 
         // change the tick

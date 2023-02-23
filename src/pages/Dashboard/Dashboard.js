@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ActivityChart from "../../components/activityChart";
+import CustomCards from "../../components/card";
 import Header from "../../components/header";
 import IntensityChart from "../../components/intensityChart";
 import ScoreChart from "../../components/scoreChart";
@@ -15,7 +16,6 @@ const Dashboard = () => {
     const [userActivity, setUserActivity] = useState(null)
     const [userPerformance, setUserPerformance] = useState(null)
     const [userSessions, setUserSessions] = useState(null)
-    // console.log(actualData)
 
     // get the user id
     let userParams = useParams()
@@ -60,7 +60,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className="right-col">
-
+                            <CustomCards cardData={actualData} />
                         </div>
                     </div>
                 </div>
