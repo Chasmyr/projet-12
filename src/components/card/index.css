@@ -20,6 +20,9 @@
     border-radius: 6px;
     margin-left: 32px;
     margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .card-desc-value {
     font-weight: 700;
@@ -31,4 +34,8 @@
     margin-bottom: 0;
     font-size: 14px;
     color: #74798C;
+}
+
+.img-logo {
+    height: 20px;
 }

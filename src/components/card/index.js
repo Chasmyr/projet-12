@@ -6,10 +6,9 @@ const CustomCards = ({cardData}) => {
 
         // setup all variable we need
         const data = cardData.data.keyData
-        const colors = ['#FF0000', '#4AB8FF1A', '#F9CE23', '#FD51811A']
-        const imagesDirectory = '../../assets/images/'
+        const colors = ['#fbeaea', '#4AB8FF1A', '#faf6e5', '#FD51811A']
         const units = ['kCal', 'g', 'g', 'g']
-        const urls = [`${imagesDirectory}energy.png`, `${imagesDirectory}chicken.png`, `${imagesDirectory}apple.png`, `${imagesDirectory}cheeseburger.png`]
+        const urls = [require(`../../assets/images/energy.png`), require(`../../assets/images/chicken.png`), require(`../../assets/images/apple.png`), require(`../../assets/images/cheeseburger.png`)]
         const text = ['Calories', 'Proteines', 'Glucides', 'Lipides']
 
         // create the array i'll need
@@ -32,6 +31,7 @@ const CustomCards = ({cardData}) => {
                     return (
                         <div key={index} className="card"> 
                             <div className='img-container' style={{ backgroundColor: e.color}}>
+                                <img alt={e.text} src={e.url} className="img-logo" />
                             </div>
                             <div className='card-desc'>
                                 <p className='card-desc-value'>{e.value + e.unit}</p>
