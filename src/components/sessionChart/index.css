@@ -1,0 +1,13 @@
+.linechart-wrapper {
+    width: calc((100% -60px)/3);
+    height: 100%;
+    background-color: #FF0000;
+    border-radius: 5px;
+}
+
+.custom-linechart-tooltip {
+    background-color: white;
+    text-align: center;
+    padding: 3px 5px;
+    font-size: 12px;
+}
