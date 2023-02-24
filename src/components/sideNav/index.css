@@ -17,3 +17,21 @@
     white-space: nowrap;
     margin-top: 160px;
 }
+
+@media screen and (max-height: 900px) {
+    .side-nav-icon {
+        margin-top: 170px;
+    }
+    .copyright {
+        margin-top: 140px;
+    }
+}
+
+@media screen and (max-height: 830px) {
+    .side-nav-icon {
+        margin-top: 140px;
+    }
+    .copyright {
+        margin-top: 110px;
+    }
+}
