@@ -13,6 +13,7 @@ const ScoreChart = ({userData}) => {
 
         return (
             <div className='radialBarChart-wrapper'>
+                <h2 className="radialBarchart-title">Score</h2>
                 <ResponsiveContainer width="100%" height="100%">
                    <RadialBarChart 
                     startAngle={90}

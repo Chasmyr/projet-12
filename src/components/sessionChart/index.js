@@ -38,6 +38,7 @@ const SessionChart = ({session}) => {
 
         return (
             <div className="linechart-wrapper">
+                <h2 className="linechart-title">Durée moyenne des sessions</h2>
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={data}
