@@ -3,11 +3,9 @@ import './index.css'
 
 const ScoreChart = ({userData}) => {
 
-    if(userData !== null) {
-
         const data = [
             {
-                value: userData.data.todayScore * 100
+                value: userData * 100
             }
         ]
 
@@ -41,7 +39,7 @@ const ScoreChart = ({userData}) => {
                             y="48%"
                             textAnchor="middle"
                         >
-                            {userData.data.todayScore * 100}%
+                            {userData * 100}%
                         </text>
                         <text
                             fontSize="16"
@@ -67,7 +65,6 @@ const ScoreChart = ({userData}) => {
                 </ResponsiveContainer>
             </div>
         )
-    }    
 }
 
 export default ScoreChart

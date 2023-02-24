@@ -3,9 +3,7 @@ import './index.css'
 
 const IntensityChart = ({performance}) => {
 
-    if(performance !== null) {
-
-        const data = performance.data.data
+        const data = performance
 
         // change the tick
         const categories = ['Intensité', 'Vitesse', 'Force', 'Endurance', 'Energie', 'Cardio']
@@ -42,7 +40,6 @@ const IntensityChart = ({performance}) => {
                 </ResponsiveContainer>
             </div>
         )
-    }
     
 }
 

@@ -2,10 +2,8 @@ import './index.css'
 
 const CustomCards = ({cardData}) => {
 
-    if(cardData !== null) {
-
         // setup all variable we need
-        const data = cardData.data.keyData
+        const data = cardData
         const colors = ['#fbeaea', '#4AB8FF1A', '#faf6e5', '#FD51811A']
         const units = ['kCal', 'g', 'g', 'g']
         const urls = [require(`../../assets/images/energy.png`), require(`../../assets/images/chicken.png`), require(`../../assets/images/apple.png`), require(`../../assets/images/cheeseburger.png`)]
@@ -15,13 +13,23 @@ const CustomCards = ({cardData}) => {
         let usableData = []
         let i = 0
         for(const property in data) {
-            usableData.push({
-                value: data[property],
-                color: colors[i],
-                url: urls[i],
-                unit: units[i],
-                text: text[i]
-            })
+            if(units[i] === 'kCal') {
+                usableData.push({
+                    value: data[property].toString().slice(0,1) + ',' + data[property].toString().slice(1),
+                    color: colors[i],
+                    url: urls[i],
+                    unit: units[i],
+                    text: text[i]
+                })
+            } else {
+                usableData.push({
+                    value: data[property],
+                    color: colors[i],
+                    url: urls[i],
+                    unit: units[i],
+                    text: text[i]
+                })
+            }
             i++
         }
     
@@ -42,7 +50,6 @@ const CustomCards = ({cardData}) => {
                 })}
             </div>
         )
-    }
 }
 
 export default CustomCards

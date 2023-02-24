@@ -3,9 +3,7 @@ import "./index.css"
 
 const ActivityChart = ({activity}) => {
 
-    if(activity !== null) {
-
-        const data = activity.data.sessions
+        const data = activity
 
         let kiloCollection = []
         data.map((e) => {
@@ -84,8 +82,7 @@ const ActivityChart = ({activity}) => {
                     </BarChart>
                 </ResponsiveContainer>
             </div>
-        )
-    }   
+        ) 
 }
 
 export default ActivityChart

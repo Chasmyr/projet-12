@@ -3,9 +3,7 @@ import "./index.css"
 
 const SessionChart = ({session}) => {
 
-    if(session !== null) {
-
-        const data = session.data.sessions
+        const data = session
 
         // return only session length
         let sessionCollection = []
@@ -74,7 +72,6 @@ const SessionChart = ({session}) => {
                 </ResponsiveContainer>
             </div>
         )
-    }
 }
 
 export default SessionChart
