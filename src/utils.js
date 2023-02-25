@@ -13,6 +13,7 @@ export const fetchApi = (id, setUserActivity, setUserPerformance, setUserSession
     const getUserSessions = axios.get(userSessions)
     const getUser = axios.get(user)
 
+    // call all route and set data in state
     axios.all([getUserActivity, getUserPerformance, getUserSessions, getUser]).then(axios.spread((res1, res2, res3, res4) => {
         if(res1.status === 200) {
             setUserActivity(res1.data.data.sessions)

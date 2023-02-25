@@ -1,4 +1,5 @@
 import "./index.css"
+import PropTypes from "prop-types"
 
 const LinkIcon = ({source}) => {
 
@@ -9,6 +10,10 @@ const LinkIcon = ({source}) => {
             <img src={require(`../../assets/images/${source}`)} alt={altText} className="link-icon-el"/>
         </div>
     )
+}
+
+LinkIcon.propTypes = {
+    source: PropTypes.string.isRequired
 }
 
 export default LinkIcon
