@@ -60,7 +60,15 @@ const Dashboard = () => {
                             </div>
                         </>
                     :
-                        <div>Pas de données</div>
+                        <div className="content-title-wrapper">
+                                <h3 className="content-title">Les données n'ont pas été <span className="content-title-username">chargées.</span></h3>
+                                <h4 className="content-title-desc">Veuillez actualisez la page ou appuyer sur ce bouton 👇</h4>
+                                <div className="buton-container">
+                                    <button className="reload-btn" onClick={() => window.location.reload()}>
+                                        Rafraichir
+                                    </button>
+                                </div>
+                        </div>
                     }
 
                 </div>
