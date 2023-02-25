@@ -40,3 +40,19 @@ Now all the packages are installed run :
 ```bash
 npm start
 ```
+
+## 2 - Back End
+
+### 2.a - Back End repository
+
+You can find the repository here :
+<a href="https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard">SportSee Back End</a>
+
+### 2.b - Launching server
+
+Once you have installed the back end following the repository instructions you can run this command to launch the server :
+
+```bash
+yarn dev
+```
+
