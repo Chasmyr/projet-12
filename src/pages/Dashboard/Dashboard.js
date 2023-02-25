@@ -7,7 +7,7 @@ import IntensityChart from "../../components/intensityChart";
 import ScoreChart from "../../components/scoreChart";
 import SessionChart from "../../components/sessionChart";
 import SideNav from "../../components/sideNav";
-import { fetchApi, fetchMockedData} from "../../utils";
+import Api from "../../model/api";
 import "./dashboard.css"
 
 const Dashboard = () => {
@@ -15,20 +15,51 @@ const Dashboard = () => {
     const [userActivity, setUserActivity] = useState(null)
     const [userPerformance, setUserPerformance] = useState(null)
     const [userSessions, setUserSessions] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
 
     // get the user id
     const userParams = useParams()
     const userId = userParams.id
 
+    // creating all func to fetch data
+    async function settingAllRequiredData(id) {
+
+        const apiToCall = new Api()
+
+        // to change between mocked data and api call uncomment the next line
+        // apiToCall.setIsCallingBackEnd(false)
+
+        const res1 = await apiToCall.getUser(id)
+        if(res1.status !== undefined && res1.status === 200) {
+            setUserData(res1.data.data) 
+        } else {
+            setUserData(res1)
+        }
+
+        const res2 = await apiToCall.getUserActivity(id)
+        if(res2.status !== undefined && res2.status === 200) {
+            setUserActivity(res2.data.data.sessions)
+        } else {
+            setUserActivity(res2.sessions)
+        }
+
+        const res3 = await apiToCall.getUserPerformance(id)
+        if(res3.status !== undefined && res3.status === 200) {
+            setUserPerformance(res3.data.data.data)
+        } else {
+            setUserPerformance(res3.data)
+        }
+
+        const res4 = await apiToCall.getUserSessions(id)
+        if(res4.status !== undefined && res4.status === 200) {
+            setUserSessions(res4.data.data.sessions)
+        } else {
+            setUserSessions(res4.sessions)
+        }
+    }
+
     // call api to get all info related to user
     useEffect(() => {
-
-        // use this to get data from the api
-        fetchApi(userId, setUserActivity, setUserPerformance, setUserSessions, setUserData, setIsLoading)
-
-        // use this to get data from the mock
-        // fetchMockedData(userId, setUserActivity, setUserPerformance, setUserSessions, setUserData, setIsLoading)
+        settingAllRequiredData(userId)
     }, [userId])
 
     return (
@@ -37,7 +68,7 @@ const Dashboard = () => {
             <main className="dasboard-main">
                 <SideNav />
                 <div className="content-wrapper">
-                    {!isLoading ? 
+                    {userData !== null && userActivity !== null && userPerformance !== null && userSessions !== null ?
                         <>
                             <div className="content-title-wrapper">
                                 <h3 className="content-title">Bonjour <span className="content-title-username">{ userData.userInfos.firstName }</span></h3>
