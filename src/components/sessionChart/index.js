@@ -1,5 +1,6 @@
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import "./index.css"
+import PropTypes from "prop-types"
 
 const SessionChart = ({session}) => {
 
@@ -72,6 +73,13 @@ const SessionChart = ({session}) => {
                 </ResponsiveContainer>
             </div>
         )
+}
+
+SessionChart.propTypes = {
+    session: PropTypes.arrayOf(PropTypes.shape({
+        day: PropTypes.number.isRequired,
+        sessionLength: PropTypes.number.isRequired
+    }))
 }
 
 export default SessionChart

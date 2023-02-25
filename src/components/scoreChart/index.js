@@ -1,5 +1,6 @@
 import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from 'recharts'
 import './index.css'
+import PropTypes from "prop-types"
 
 const ScoreChart = ({userData}) => {
 
@@ -65,6 +66,10 @@ const ScoreChart = ({userData}) => {
                 </ResponsiveContainer>
             </div>
         )
+}
+
+ScoreChart.propTypes = {
+    userData: PropTypes.number.isRequired
 }
 
 export default ScoreChart

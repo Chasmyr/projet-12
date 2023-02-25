@@ -1,4 +1,5 @@
 import './index.css'
+import PropTypes from "prop-types"
 
 const CustomCards = ({cardData}) => {
 
@@ -50,6 +51,15 @@ const CustomCards = ({cardData}) => {
                 })}
             </div>
         )
+}
+
+CustomCards.propTypes = {
+    cardData: PropTypes.shape({
+        calorieCount: PropTypes.number.isRequired,
+        carbohydrateCount: PropTypes.number.isRequired,
+        lipidCount: PropTypes.number.isRequired,
+        proteinCount: PropTypes.number.isRequired
+    })
 }
 
 export default CustomCards

@@ -1,5 +1,6 @@
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
 import './index.css'
+import PropTypes from "prop-types"
 
 const IntensityChart = ({performance}) => {
 
@@ -41,6 +42,13 @@ const IntensityChart = ({performance}) => {
             </div>
         )
     
+}
+
+IntensityChart.propTypes = {
+    performance: PropTypes.arrayOf(PropTypes.shape({
+        value: PropTypes.number.isRequired,
+        kind: PropTypes.number.isRequired
+    }))
 }
 
 export default IntensityChart

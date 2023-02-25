@@ -1,5 +1,6 @@
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import "./index.css"
+import PropTypes from "prop-types"
 
 const ActivityChart = ({activity}) => {
 
@@ -83,6 +84,14 @@ const ActivityChart = ({activity}) => {
                 </ResponsiveContainer>
             </div>
         ) 
+}
+
+ActivityChart.propTypes = {
+    activity: PropTypes.arrayOf(PropTypes.shape({
+        day: PropTypes.string.isRequired,
+        kilogram: PropTypes.number.isRequired,
+        calories: PropTypes.number.isRequired
+    }))
 }
 
 export default ActivityChart
