@@ -35,3 +35,8 @@ npm install
 
 ### 1.d - Launching the project
 
+Now all the packages are installed run :
+
+```bash
+npm start
+```
