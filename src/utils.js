@@ -13,24 +13,18 @@ export const fetchApi = (id, setUserActivity, setUserPerformance, setUserSession
     const getUserSessions = axios.get(userSessions)
     const getUser = axios.get(user)
 
-    let allData = {}
-
     axios.all([getUserActivity, getUserPerformance, getUserSessions, getUser]).then(axios.spread((res1, res2, res3, res4) => {
         if(res1.status === 200) {
             setUserActivity(res1.data.data.sessions)
-            allData['userActivity'] = res1.data.data.sessions
         }
         if(res2.status === 200) {
             setUserPerformance(res2.data.data.data)
-            allData['userPerformance'] = res2.data.data.data
         }
         if(res3.status === 200) {
             setUserSessions(res3.data.data.sessions)
-            allData['userSessions'] = res3.data.data.sessions
         }
         if(res4.status === 200) {
             setUserData(res4.data.data)
-            allData['userData'] = res4.data.data
         }
         setIsLoading(false)
     }))
@@ -43,10 +37,13 @@ export const fetchMockedData = (id, setUserActivity, setUserPerformance, setUser
     const getUserActivity = USER_ACTIVITY.find(item => item.userId.toString() === id)
     const getUserSessions = USER_SESSIONS.find(item => item.userId.toString() === id)
     const getUserPerformance = USER_PERFORMANCE.find(item => item.userId.toString() === id)
+
+    if(getUser !== undefined) {
+        setUserData(getUser)
+        setUserActivity(getUserActivity.sessions)
+        setUserSessions(getUserSessions.sessions)
+        setUserPerformance(getUserPerformance.data)
+        setIsLoading(false)
+    }
     
-    setUserData(getUser)
-    setUserActivity(getUserActivity.sessions)
-    setUserSessions(getUserSessions.sessions)
-    setUserPerformance(getUserPerformance.data)
-    setIsLoading(false)
 }
