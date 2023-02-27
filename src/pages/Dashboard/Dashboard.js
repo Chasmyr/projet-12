@@ -12,9 +12,7 @@ import "./dashboard.css"
 
 /**
  * A component which is used to create the main page
- * @returns (
- *  <Dashboard />
- * )
+ * @returns {JSX.Element}
  */
 const Dashboard = () => {
     const [userData, setUserData] = useState(null)
@@ -29,6 +27,7 @@ const Dashboard = () => {
     /**
      * An async function which gets from the API or from a mock all necessary data and then set it to the state
      * @param {number} id 
+     * @returns ()
      */
     async function settingAllRequiredData(id) {
 

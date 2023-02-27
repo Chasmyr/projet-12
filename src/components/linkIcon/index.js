@@ -4,9 +4,7 @@ import PropTypes from "prop-types"
 /**
  * Component who generate an img
  * @component
- * @returns (
- *  <LinkIcon source={imgUrl} />
- * )
+ * @returns {JSX.Element}
  */
 const LinkIcon = ({source}) => {
 

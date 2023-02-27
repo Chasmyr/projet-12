@@ -3,9 +3,7 @@ import LinkIcon from "../linkIcon"
 
 /**
  * A component which create the left side nav
- * @returns (
- *  <SideNav />
- * )
+ * @returns {JSX.Element}
  */
 const SideNav = () => {
 

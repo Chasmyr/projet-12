@@ -4,9 +4,7 @@ import PropTypes from "prop-types"
 /**
  * Component which shows the user's diet in four cards
  * @component
- * @returns (
- *  <CustomCards cardData={data} />
- * )
+ * @returns {JSX.Element}
  */
 const CustomCards = ({cardData}) => {
 

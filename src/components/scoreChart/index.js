@@ -5,9 +5,7 @@ import PropTypes from "prop-types"
 /**
  * A component that shows how well today's goal is being achieved in a radial bar graph
  * @component
- * @returns (
- *  <ScoreChart userData={data} />
- * )
+ * @returns {JSX.Element}
  */
 const ScoreChart = ({userData}) => {
 

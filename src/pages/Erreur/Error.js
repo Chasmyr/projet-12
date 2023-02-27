@@ -3,9 +3,7 @@ import SideNav from "../../components/sideNav"
 
 /**
  * A component which is used to create the error 404 page
- * @returns (
- *  <Error />
- * )
+ * @returns {JSX.Element}
  */
 const Error = () => {
 

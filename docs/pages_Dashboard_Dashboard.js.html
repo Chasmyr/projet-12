@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Dashboard/Dashboard.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Dashboard/Dashboard.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import ActivityChart from "../../components/activityChart";
+import CustomCards from "../../components/card";
+import Header from "../../components/header";
+import IntensityChart from "../../components/intensityChart";
+import ScoreChart from "../../components/scoreChart";
+import SessionChart from "../../components/sessionChart";
+import SideNav from "../../components/sideNav";
+import Api from "../../model/api";
+import "./dashboard.css"
+
+/**
+ * A component which is used to create the main page
+ * @returns {JSX.Element}
+ */
+const Dashboard = () => {
+    const [userData, setUserData] = useState(null)
+    const [userActivity, setUserActivity] = useState(null)
+    const [userPerformance, setUserPerformance] = useState(null)
+    const [userSessions, setUserSessions] = useState(null)
+
+    // get the user id
+    const userParams = useParams()
+    const userId = userParams.id
+
+    /**
+     * An async function which gets from the API or from a mock all necessary data and then set it to the state
+     * @param {number} id 
+     * @returns ()
+     */
+    async function settingAllRequiredData(id) {
+
+        const apiToCall = new Api()
+
+        // to change between mocked data and api call uncomment the next line
+        // apiToCall.setIsCallingBackEnd(false)
+
+        const res1 = await apiToCall.getUser(id)
+        if(res1.status !== undefined &amp;&amp; res1.status === 200) {
+            setUserData(res1.data.data) 
+        } else {
+            setUserData(res1)
+        }
+
+        const res2 = await apiToCall.getUserActivity(id)
+        if(res2.status !== undefined &amp;&amp; res2.status === 200) {
+            setUserActivity(res2.data.data.sessions)
+        } else {
+            setUserActivity(res2.sessions)
+        }
+
+        const res3 = await apiToCall.getUserPerformance(id)
+        if(res3.status !== undefined &amp;&amp; res3.status === 200) {
+            setUserPerformance(res3.data.data.data)
+        } else {
+            setUserPerformance(res3.data)
+        }
+
+        const res4 = await apiToCall.getUserSessions(id)
+        if(res4.status !== undefined &amp;&amp; res4.status === 200) {
+            setUserSessions(res4.data.data.sessions)
+        } else {
+            setUserSessions(res4.sessions)
+        }
+    }
+
+    // call api to get all info related to user
+    useEffect(() => {
+        settingAllRequiredData(userId)
+    }, [userId])
+
+    return (
+        &lt;>
+            &lt;Header />
+            &lt;main className="dasboard-main">
+                &lt;SideNav />
+                &lt;div className="content-wrapper">
+                    {userData !== null &amp;&amp; userActivity !== null &amp;&amp; userPerformance !== null &amp;&amp; userSessions !== null ?
+                        &lt;>
+                            &lt;div className="content-title-wrapper">
+                                &lt;h3 className="content-title">Bonjour &lt;span className="content-title-username">{ userData.userInfos.firstName }&lt;/span>&lt;/h3>
+                                &lt;h4 className="content-title-desc">Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/h4>
+                            &lt;/div>
+                            &lt;div className="graph-wrapper">
+                                &lt;div className="left-col">
+                                    &lt;div className="activity-graph">
+                                        &lt;ActivityChart activity={userActivity}/>
+                                    &lt;/div>
+                                    &lt;div className="small-graph">
+                                        &lt;SessionChart session={userSessions} />
+                                        &lt;IntensityChart performance={userPerformance} />
+                                        &lt;ScoreChart userData={userData.todayScore} />
+                                    &lt;/div>
+                                &lt;/div>
+                                &lt;div className="right-col">
+                                    &lt;CustomCards cardData={userData.keyData} />
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/>
+                    :
+                        &lt;div className="content-title-wrapper">
+                                &lt;h3 className="content-title">Les données n'ont pas été &lt;span className="content-title-username">chargées.&lt;/span>&lt;/h3>
+                                &lt;h4 className="content-title-desc">Veuillez actualisez la page ou appuyer sur ce bouton 👇&lt;/h4>
+                                &lt;div className="buton-container">
+                                    &lt;button className="reload-btn" onClick={() => window.location.reload()}>
+                                        Rafraichir
+                                    &lt;/button>
+                                &lt;/div>
+                        &lt;/div>
+                    }
+
+                &lt;/div>
+            &lt;/main>
+        &lt;/>
+    )
+}
+
+export default Dashboard</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ActivityChart">ActivityChart</a></li><li><a href="global.html#CustomCards">CustomCards</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#IntensityChart">IntensityChart</a></li><li><a href="global.html#LinkIcon">LinkIcon</a></li><li><a href="global.html#ScoreChart">ScoreChart</a></li><li><a href="global.html#SessionChart">SessionChart</a></li><li><a href="global.html#SideNav">SideNav</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Feb 27 2023 09:50:03 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -5,9 +5,7 @@ import PropTypes from "prop-types"
 /**
  * A component which shows the session time over the week in a line chart
  * @component 
- * @returns (
- *  <SessionChart session={data} />
- * )
+ * @returns {JSX.Element}
  */
 const SessionChart = ({session}) => {
 

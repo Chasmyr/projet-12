@@ -5,9 +5,7 @@ import PropTypes from "prop-types"
 /**
  * Component which shows the performance of the user in a Radar Chart
  * @component
- * @returns (
- *  <IntensityChart performance={data} />
- * )
+ * @returns {JSX.Element}
  */
 const IntensityChart = ({performance}) => {
 

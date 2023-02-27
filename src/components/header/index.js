@@ -3,9 +3,7 @@ import "./index.css"
 /**
  * Header of the app
  * @component
- * @returns (
- *  <Header />
- * )
+ * @returns {JSX.Element}
  */
 const Header = () => {
 
