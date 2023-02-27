@@ -1,6 +1,13 @@
 import './index.css'
 import PropTypes from "prop-types"
 
+/**
+ * Component which shows the user's diet in four cards
+ * @component
+ * @returns (
+ *  <CustomCards cardData={data} />
+ * )
+ */
 const CustomCards = ({cardData}) => {
 
         // setup all variable we need

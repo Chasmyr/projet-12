@@ -2,6 +2,13 @@ import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } fro
 import './index.css'
 import PropTypes from "prop-types"
 
+/**
+ * Component which shows the performance of the user in a Radar Chart
+ * @component
+ * @returns (
+ *  <IntensityChart performance={data} />
+ * )
+ */
 const IntensityChart = ({performance}) => {
 
         const data = performance

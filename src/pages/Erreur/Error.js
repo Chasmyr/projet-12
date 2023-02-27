@@ -1,6 +1,12 @@
 import Header from "../../components/header"
 import SideNav from "../../components/sideNav"
 
+/**
+ * A component which is used to create the error 404 page
+ * @returns (
+ *  <Error />
+ * )
+ */
 const Error = () => {
 
     return (

@@ -2,6 +2,13 @@ import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from '
 import './index.css'
 import PropTypes from "prop-types"
 
+/**
+ * A component that shows how well today's goal is being achieved in a radial bar graph
+ * @component
+ * @returns (
+ *  <ScoreChart userData={data} />
+ * )
+ */
 const ScoreChart = ({userData}) => {
 
         const data = [

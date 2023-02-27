@@ -2,6 +2,13 @@ import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "rec
 import "./index.css"
 import PropTypes from "prop-types"
 
+/**
+ * A component which shows the session time over the week in a line chart
+ * @component 
+ * @returns (
+ *  <SessionChart session={data} />
+ * )
+ */
 const SessionChart = ({session}) => {
 
         const data = session

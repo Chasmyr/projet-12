@@ -1,5 +1,12 @@
 import "./index.css"
 
+/**
+ * Header of the app
+ * @component
+ * @returns (
+ *  <Header />
+ * )
+ */
 const Header = () => {
 
     return (

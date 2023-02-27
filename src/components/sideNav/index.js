@@ -1,6 +1,12 @@
 import "./index.css"
 import LinkIcon from "../linkIcon"
 
+/**
+ * A component which create the left side nav
+ * @returns (
+ *  <SideNav />
+ * )
+ */
 const SideNav = () => {
 
     const iconList = ['meditation.png', 'nage.png', 'velo.png', 'font.png']

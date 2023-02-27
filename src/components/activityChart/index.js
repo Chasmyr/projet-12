@@ -2,6 +2,13 @@ import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAx
 import "./index.css"
 import PropTypes from "prop-types"
 
+/**
+ * Component which shows the user's activity in a graph
+ * @component
+ * @returns (
+ * <ActivityChart activity={data} />
+ * )
+ */
 const ActivityChart = ({activity}) => {
 
         const data = activity

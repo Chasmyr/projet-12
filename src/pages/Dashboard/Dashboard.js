@@ -10,6 +10,12 @@ import SideNav from "../../components/sideNav";
 import Api from "../../model/api";
 import "./dashboard.css"
 
+/**
+ * A component which is used to create the main page
+ * @returns (
+ *  <Dashboard />
+ * )
+ */
 const Dashboard = () => {
     const [userData, setUserData] = useState(null)
     const [userActivity, setUserActivity] = useState(null)
@@ -20,7 +26,10 @@ const Dashboard = () => {
     const userParams = useParams()
     const userId = userParams.id
 
-    // creating all func to fetch data
+    /**
+     * An async function which gets from the API or from a mock all necessary data and then set it to the state
+     * @param {number} id 
+     */
     async function settingAllRequiredData(id) {
 
         const apiToCall = new Api()

@@ -1,6 +1,13 @@
 import "./index.css"
 import PropTypes from "prop-types"
 
+/**
+ * Component who generate an img
+ * @component
+ * @returns (
+ *  <LinkIcon source={imgUrl} />
+ * )
+ */
 const LinkIcon = ({source}) => {
 
     const altText = source.substring(0, source.length - 4)
