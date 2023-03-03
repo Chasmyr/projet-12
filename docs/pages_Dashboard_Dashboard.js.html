@@ -35,7 +35,7 @@ import IntensityChart from "../../components/intensityChart";
 import ScoreChart from "../../components/scoreChart";
 import SessionChart from "../../components/sessionChart";
 import SideNav from "../../components/sideNav";
-import Api from "../../model/api";
+import { getData } from "../../service/formatingData";
 import "./dashboard.css"
 
 /**
@@ -43,59 +43,20 @@ import "./dashboard.css"
  * @returns {JSX.Element}
  */
 const Dashboard = () => {
-    const [userData, setUserData] = useState(null)
-    const [userActivity, setUserActivity] = useState(null)
-    const [userPerformance, setUserPerformance] = useState(null)
-    const [userSessions, setUserSessions] = useState(null)
+    const [userData, setUserData] = useState({})
 
     // get the user id
     const userParams = useParams()
     const userId = userParams.id
 
-    /**
-     * An async function which gets from the API or from a mock all necessary data and then set it to the state
-     * @param {number} id 
-     * @returns ()
-     */
-    async function settingAllRequiredData(id) {
-
-        const apiToCall = new Api()
-
-        // to change between mocked data and api call uncomment the next line
-        // apiToCall.setIsCallingBackEnd(false)
-
-        const res1 = await apiToCall.getUser(id)
-        if(res1.status !== undefined &amp;&amp; res1.status === 200) {
-            setUserData(res1.data.data) 
-        } else {
-            setUserData(res1)
-        }
-
-        const res2 = await apiToCall.getUserActivity(id)
-        if(res2.status !== undefined &amp;&amp; res2.status === 200) {
-            setUserActivity(res2.data.data.sessions)
-        } else {
-            setUserActivity(res2.sessions)
-        }
-
-        const res3 = await apiToCall.getUserPerformance(id)
-        if(res3.status !== undefined &amp;&amp; res3.status === 200) {
-            setUserPerformance(res3.data.data.data)
-        } else {
-            setUserPerformance(res3.data)
-        }
-
-        const res4 = await apiToCall.getUserSessions(id)
-        if(res4.status !== undefined &amp;&amp; res4.status === 200) {
-            setUserSessions(res4.data.data.sessions)
-        } else {
-            setUserSessions(res4.sessions)
-        }
-    }
-
     // call api to get all info related to user
     useEffect(() => {
-        settingAllRequiredData(userId)
+        const fetchData = async () => {
+            // to get data form the mock change true to false
+            const result = await getData(userId, true)
+            setUserData(result)
+        }
+        fetchData()
     }, [userId])
 
     return (
@@ -104,20 +65,20 @@ const Dashboard = () => {
             &lt;main className="dasboard-main">
                 &lt;SideNav />
                 &lt;div className="content-wrapper">
-                    {userData !== null &amp;&amp; userActivity !== null &amp;&amp; userPerformance !== null &amp;&amp; userSessions !== null ?
+                    {Object.keys(userData).length > 0 ?
                         &lt;>
                             &lt;div className="content-title-wrapper">
-                                &lt;h3 className="content-title">Bonjour &lt;span className="content-title-username">{ userData.userInfos.firstName }&lt;/span>&lt;/h3>
+                                &lt;h3 className="content-title">Bonjour &lt;span className="content-title-username">{ userData.firstName }&lt;/span>&lt;/h3>
                                 &lt;h4 className="content-title-desc">Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/h4>
                             &lt;/div>
                             &lt;div className="graph-wrapper">
                                 &lt;div className="left-col">
                                     &lt;div className="activity-graph">
-                                        &lt;ActivityChart activity={userActivity}/>
+                                        &lt;ActivityChart activity={userData.activity}/>
                                     &lt;/div>
                                     &lt;div className="small-graph">
-                                        &lt;SessionChart session={userSessions} />
-                                        &lt;IntensityChart performance={userPerformance} />
+                                        &lt;SessionChart session={userData.sessions} />
+                                        &lt;IntensityChart performance={userData.performance} />
                                         &lt;ScoreChart userData={userData.todayScore} />
                                     &lt;/div>
                                 &lt;/div>
@@ -154,13 +115,13 @@ export default Dashboard</code></pre>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ActivityChart">ActivityChart</a></li><li><a href="global.html#CustomCards">CustomCards</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#IntensityChart">IntensityChart</a></li><li><a href="global.html#LinkIcon">LinkIcon</a></li><li><a href="global.html#ScoreChart">ScoreChart</a></li><li><a href="global.html#SessionChart">SessionChart</a></li><li><a href="global.html#SideNav">SideNav</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ActivityChart">ActivityChart</a></li><li><a href="global.html#CustomCards">CustomCards</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#IntensityChart">IntensityChart</a></li><li><a href="global.html#LinkIcon">LinkIcon</a></li><li><a href="global.html#ScoreChart">ScoreChart</a></li><li><a href="global.html#SessionChart">SessionChart</a></li><li><a href="global.html#SideNav">SideNav</a></li><li><a href="global.html#getData">getData</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Feb 27 2023 09:50:03 GMT+0100 (Central European Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Mar 03 2023 16:43:28 GMT+0100 (heure normale d’Europe centrale)
 </footer>
 
 <script> prettyPrint(); </script>

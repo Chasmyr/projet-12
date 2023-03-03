@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/linkIcon/index.js</title>
+    <title>JSDoc: Source: pages/Home/Home.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/linkIcon/index.js</h1>
+    <h1 class="page-title">Source: pages/Home/Home.js</h1>
 
     
 
@@ -26,30 +26,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import "./index.css"
-import PropTypes from "prop-types"
+            <pre class="prettyprint source linenums"><code>import Header from "../../components/header"
+import SideNav from "../../components/sideNav"
 
 /**
- * Component who generate an img
- * @component
+ * A component which is used to create the home page
  * @returns {JSX.Element}
  */
-const LinkIcon = ({source}) => {
-
-    const altText = source.substring(0, source.length - 4)
+const Home = () => {
 
     return (
-        &lt;div className="link-icon-container">
-            &lt;img src={require(`../../assets/images/${source}`)} alt={altText} className="link-icon-el"/>
-        &lt;/div>
+        &lt;>
+            &lt;Header />
+            &lt;main className="dasboard-main">
+                &lt;SideNav />
+                &lt;div className="content-wrapper">
+                &lt;div className="content-title-wrapper">
+                        &lt;h3 className="content-title">Cette page est en &lt;span className="content-title-username">construction&lt;/span>&lt;/h3>
+                        &lt;h4 className="content-title-desc">Référez vous au read me pour accédez aux tableau de bord&lt;/h4>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/main>
+        &lt;/>
     )
 }
 
-LinkIcon.propTypes = {
-    source: PropTypes.string.isRequired
-}
-
-export default LinkIcon</code></pre>
+export default Home</code></pre>
         </article>
     </section>
 
