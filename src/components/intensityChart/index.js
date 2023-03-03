@@ -8,13 +8,12 @@ import PropTypes from "prop-types"
  * @returns {JSX.Element}
  */
 const IntensityChart = ({performance}) => {
-
-        const data = performance
+    
+        const data = performance.value
 
         // change the tick
-        const categories = ['Intensité', 'Vitesse', 'Force', 'Endurance', 'Energie', 'Cardio']
         const formatXAxis = (tickItem) => {
-            return categories[tickItem - 1]
+            return performance.categories[tickItem - 1]
         }
     
         return (
@@ -50,10 +49,11 @@ const IntensityChart = ({performance}) => {
 }
 
 IntensityChart.propTypes = {
-    performance: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.number.isRequired,
         kind: PropTypes.number.isRequired
-    }))
+    })),
+    categories: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default IntensityChart

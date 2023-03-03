@@ -41,6 +41,8 @@ Now all the packages are installed run :
 npm start
 ```
 
+Go to /utilisateur/12 or /utilisateur/18 to see the dashboard
+
 ## 2 - Back End
 
 ### 2.a - Back End repository

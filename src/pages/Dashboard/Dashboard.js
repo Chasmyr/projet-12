@@ -7,7 +7,7 @@ import IntensityChart from "../../components/intensityChart";
 import ScoreChart from "../../components/scoreChart";
 import SessionChart from "../../components/sessionChart";
 import SideNav from "../../components/sideNav";
-import Api from "../../model/api";
+import { getData } from "../../service/formatingData";
 import "./dashboard.css"
 
 /**
@@ -15,59 +15,20 @@ import "./dashboard.css"
  * @returns {JSX.Element}
  */
 const Dashboard = () => {
-    const [userData, setUserData] = useState(null)
-    const [userActivity, setUserActivity] = useState(null)
-    const [userPerformance, setUserPerformance] = useState(null)
-    const [userSessions, setUserSessions] = useState(null)
+    const [userData, setUserData] = useState({})
 
     // get the user id
     const userParams = useParams()
     const userId = userParams.id
 
-    /**
-     * An async function which gets from the API or from a mock all necessary data and then set it to the state
-     * @param {number} id 
-     * @returns ()
-     */
-    async function settingAllRequiredData(id) {
-
-        const apiToCall = new Api()
-
-        // to change between mocked data and api call uncomment the next line
-        // apiToCall.setIsCallingBackEnd(false)
-
-        const res1 = await apiToCall.getUser(id)
-        if(res1.status !== undefined && res1.status === 200) {
-            setUserData(res1.data.data) 
-        } else {
-            setUserData(res1)
-        }
-
-        const res2 = await apiToCall.getUserActivity(id)
-        if(res2.status !== undefined && res2.status === 200) {
-            setUserActivity(res2.data.data.sessions)
-        } else {
-            setUserActivity(res2.sessions)
-        }
-
-        const res3 = await apiToCall.getUserPerformance(id)
-        if(res3.status !== undefined && res3.status === 200) {
-            setUserPerformance(res3.data.data.data)
-        } else {
-            setUserPerformance(res3.data)
-        }
-
-        const res4 = await apiToCall.getUserSessions(id)
-        if(res4.status !== undefined && res4.status === 200) {
-            setUserSessions(res4.data.data.sessions)
-        } else {
-            setUserSessions(res4.sessions)
-        }
-    }
-
     // call api to get all info related to user
     useEffect(() => {
-        settingAllRequiredData(userId)
+        const fetchData = async () => {
+            // to get data form the mock change true to false
+            const result = await getData(userId, true)
+            setUserData(result)
+        }
+        fetchData()
     }, [userId])
 
     return (
@@ -76,20 +37,20 @@ const Dashboard = () => {
             <main className="dasboard-main">
                 <SideNav />
                 <div className="content-wrapper">
-                    {userData !== null && userActivity !== null && userPerformance !== null && userSessions !== null ?
+                    {Object.keys(userData).length > 0 ?
                         <>
                             <div className="content-title-wrapper">
-                                <h3 className="content-title">Bonjour <span className="content-title-username">{ userData.userInfos.firstName }</span></h3>
+                                <h3 className="content-title">Bonjour <span className="content-title-username">{ userData.firstName }</span></h3>
                                 <h4 className="content-title-desc">Félicitation ! Vous avez explosé vos objectifs hier 👏</h4>
                             </div>
                             <div className="graph-wrapper">
                                 <div className="left-col">
                                     <div className="activity-graph">
-                                        <ActivityChart activity={userActivity}/>
+                                        <ActivityChart activity={userData.activity}/>
                                     </div>
                                     <div className="small-graph">
-                                        <SessionChart session={userSessions} />
-                                        <IntensityChart performance={userPerformance} />
+                                        <SessionChart session={userData.sessions} />
+                                        <IntensityChart performance={userData.performance} />
                                         <ScoreChart userData={userData.todayScore} />
                                     </div>
                                 </div>

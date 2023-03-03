@@ -9,7 +9,7 @@ import PropTypes from "prop-types"
  */
 const SessionChart = ({session}) => {
 
-        const data = session
+        const data = session.value
 
         // return only session length
         let sessionCollection = []
@@ -35,9 +35,8 @@ const SessionChart = ({session}) => {
         }
 
         // change the Xaxis tick
-        const dayOfTheWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
         const formatXAxis = (tickItem) => {
-            return dayOfTheWeek[tickItem - 1]
+            return session.formatOfWeek[tickItem - 1]
         }
 
         return (
@@ -81,10 +80,11 @@ const SessionChart = ({session}) => {
 }
 
 SessionChart.propTypes = {
-    session: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.arrayOf(PropTypes.shape({
         day: PropTypes.number.isRequired,
         sessionLength: PropTypes.number.isRequired
-    }))
+    })),
+    formatOfWeek: PropTypes.arrayOf(PropTypes.string)
 }
 
 export default SessionChart
